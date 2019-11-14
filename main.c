@@ -13,3 +13,9 @@ int main() {
   close(testfile);
   return 0;
 }
+
+void rand_ary(int* nums, int size) {
+  int randfile = open("/dev/random", O_RDONLY);
+  read(randfile, nums, sizeof(int)*size);
+  close(randfile);
+}
