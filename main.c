@@ -2,20 +2,31 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "randgen.h"
 
 int main() {
   int nums[10];
-  rand_ary(nums, 10);
+  int randfile = open("/dev/random", O_RDONLY);
+  read(randfile, nums, 10 * sizeof(int));
+  close(randfile);
+
+  printf("___________________\nNUMBERS GENERATED:\n");
+  int i;
+  for (i = 0; i < 10; i++) {
+    printf("\t%d\n", nums[i]);
+  }
 
   int testfile = open("./testfile", O_RDWR);
+  write(testfile, nums, 10 * sizeof(int));
+  lseek(testfile, 0, SEEK_SET);
 
+  int nums_copy[10];
+  read(testfile, nums_copy, 10 * sizeof(int));
   close(testfile);
-  return 0;
-}
 
-void rand_ary(int* nums, int size) {
-  int randfile = open("/dev/random", O_RDONLY);
-  read(randfile, nums, sizeof(int)*size);
-  close(randfile);
+  printf("___________________\nNUMBERS READ:\n");
+  for (i = 0; i < 10; i++) {
+    printf("\t%d\n", nums[i]);
+  }
+
+  return 0;
 }
