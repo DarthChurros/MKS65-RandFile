@@ -2,7 +2,7 @@
 #define RANDGEN_H
 
 void rand_ary(int* nums, int size);
-int write_ary(int fd, int* nums, int size);
-int read_ary(int fd, int* nums, int size);
+void write_ary(int fd, int* nums, int size);
+void read_ary(int fd, int* nums, int size);
 
 #endif

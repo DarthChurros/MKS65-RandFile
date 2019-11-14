@@ -10,10 +10,8 @@ void rand_ary(int* nums, int size) {
   close(randfile);
 }
 
-int write_ary(int fd, int* nums, int size) {
-  return 0;
+void write_ary(int fd, int* nums, int size) {
 }
 
-int read_ary(int fd, int* nums, int size) {
-  return 0;
+void read_ary(int fd, int* nums, int size) {
 }
