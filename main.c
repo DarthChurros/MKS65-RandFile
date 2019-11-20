@@ -15,7 +15,7 @@ int main() {
     printf("\t%d\n", nums[i]);
   }
 
-  int testfile = open("./testfile", O_RDWR);
+  int testfile = open("./testfile", O_CREAT | O_RDWR);
   write(testfile, nums, 10 * sizeof(int));
   lseek(testfile, 0, SEEK_SET);
 
